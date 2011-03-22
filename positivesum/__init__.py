@@ -1,4 +1,5 @@
 from fabric.api import env
+import os
 
 class Environment:
 
@@ -10,6 +11,7 @@ class Environment:
         self.__doc__ = self.site_url
 
     def __call__(self):
+        env.project = os.getcwd().split('/')[-1]
         env.name = self.name
         env.exclude = self.exclude
         env.site_url = self.site_url

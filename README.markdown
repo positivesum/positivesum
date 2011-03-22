@@ -37,7 +37,7 @@ directory.
 ## Functions
 
 ### migrate
-migrate function generates a migration script that will migrate a database from one url to another. It has some
+*migrate* function generates a migration script that will migrate a database from one url to another. It has some
 predefined parameters and requires some parameters. The simplest examples of executing the migrate function is
 
     fab migrate:from_url=http://projecturl,to_url=http://projecturl.ps.hstd.org
@@ -48,5 +48,9 @@ options by explicitly indicating these parameters for example
 
     fab migrate:from_url=http://projecturl,to_url=http://projecturl.ps.hstd.org,db_dump=/path/to/dump/file,output=/path/to/output
 
+### generate
+*generate* function produces a tarball of a project for a specific url. To generate a package you must specify what
+environment this package is for and what url you are migrating from.
 
+    fab live generate:from_url=http://projecturl
 

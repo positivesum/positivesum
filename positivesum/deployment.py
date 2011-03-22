@@ -1,6 +1,7 @@
 from fabric.api import require, local, env, prompt
 import os, tempfile
 from positivesum.db import mysql
+from positivesum.utilities import compile_excludes
 
 def generate(from_url=None, to_url=None, version=None, output=None):
     '''
@@ -19,7 +20,7 @@ def generate(from_url=None, to_url=None, version=None, output=None):
     local('mkdir %s/db'%tmpd)
 
     # copy files to this directory
-    local('rsync -av html/ %s/html/ --exclude=%s'%(tmpd, ' --exclude='.join(_compile_excludes())))
+    local('rsync -av html/ %s/html/ --exclude=%s'%(tmpd, ' --exclude='.join(compile_excludes())))
 
     # create database migration script
     if not from_url:
@@ -46,7 +47,8 @@ def generate(from_url=None, to_url=None, version=None, output=None):
     local('echo "%s" > %s'%(changelog, os.path.join(tmpd, 'CHANGELOG')))
 
     # copy TESTS
-    local('cp tests.txt %s'%os.path.join(tmpd, 'tests.txt'))
+    if os.path.exists('tests.txt'):
+        local('cp tests.txt %s'%os.path.join(tmpd, 'tests.txt'))
 
     # write version file
     if not version:
