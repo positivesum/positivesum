@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: positivesum
+Version: 0.1dev
+Summary: Package of tools that make Positive Sum process easier.
+Home-page: http://positivesum.org
+Author: Taras Mankovski
+Author-email: taras@positivesum.org
+License: GPLv2
+Description: UNKNOWN
+Keywords: wordpress joomla drupal database migration deployment package generation
+Platform: UNKNOWN

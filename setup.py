@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.0'
+version = '0.1'
 
 setup(name='positivesum',
       version=version,
-      description="Package of tools that make +∑ Positive Sum process easier.",
+      description='Package of tools that make Positive Sum process easier.',
       long_description="""\
 """,
       classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
