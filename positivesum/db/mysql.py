@@ -111,7 +111,8 @@ def _migration_tables():
             ('postmeta', mixed_content, ('meta_id','meta_value')),
             ('icl_translation_status', mixed_content, ('translation_id', 'translation_package')),
             ('redirection_logs', inline_replace, ('id','referrer')),
-            ('rg_lead', inline_replace, ('id','source_url'))
+            ('rg_lead', inline_replace, ('id','source_url')),
+            ('links', inline_replace, ('link_id', 'link_image'))
     ]
 
     return tables
