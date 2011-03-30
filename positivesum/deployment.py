@@ -1,4 +1,7 @@
-from fabric.api import require, local, env, prompt
+from __future__ import with_statement
+
+from fabric.api import require, local, env, prompt, run
+from fabric.context_managers import cd
 import os, tempfile
 from positivesum.db import mysql
 from positivesum.utilities import compile_excludes
@@ -63,3 +66,13 @@ def generate(from_url=None, to_url=None, version=None, output=None):
     output = os.path.join(output, tarball)
 
     local('tar -C %s -pczf %s .'%(tmpd, output))
+
+def update():
+    '''
+    Update a site with the latest version from git repository
+    '''
+    require('site_path')
+    require('name')
+
+    with(cd(env.site_path)):
+        run('git pull origin master')

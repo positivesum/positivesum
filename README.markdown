@@ -54,3 +54,8 @@ environment this package is for and what url you are migrating from.
 
     fab live generate:from_url=http://projecturl
 
+### update
+*update* function updates a specific environment with the latest version from the git repository.
+
+    fab demo update
+
