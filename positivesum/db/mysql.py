@@ -37,7 +37,8 @@ def migrate(from_url, to_url, db_dump='db/last', db_prefix='wp_', output='db/mig
 
     # foreach table replace url from to
     for table, callback, args in env.tables:
-        output.write(callback(table, args))
+        if table_exists(env.db_prefix+table):
+            output.write(callback(table, args))
 
     output.close()
 
@@ -97,6 +98,15 @@ def mixed_content(table, args):
                       (table, column, db.escape(replaced), index, id))
 
     return '\n'.join(output)
+
+def table_exists(name):
+    '''
+    Return True if table with specified name exists, otherwise return False
+    '''
+    db = MySQLdb.connect(db=env.tmp_db, read_default_file='~/.my.cnf')
+    c = db.cursor()
+    c.execute('SHOW TABLES LIKE %s', (name, ))
+    return c.fetchone() is not None
 
 def _migration_tables():
     '''
